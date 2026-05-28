@@ -1,0 +1,1105 @@
+!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zyummy – Postres & Bebidas Premium | Medellín</title>
+<meta name="description" content="Zyummy: Postres personalizados, jugos exóticos y experiencias únicas en Medellín. Candy bars, spots instagrameables y sabores que no olvidarás.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080407;
+  --dark: #100810;
+  --charcoal: #1a0e18;
+  --rose: #C8455F;
+  --rose-deep: #8B1F38;  
+  --rose-light: #E8789A;
+  --rose-pale: #F5D8E2;
+  --gold: #C9973A;
+  --gold-light: #E8C46A;
+  --cream: #FBF8F5;
+  --cream2: #F5EFE8;
+  --white: #FFFFFF;
+  --text-on-dark: #F5D8E2;
+  --text-body: #1A0E18;
+  --text-mid: #4A2838;
+  --text-soft: #8A6070;
+  --border-light: rgba(200,69,95,0.15);
+  --border-gold: rgba(201,151,58,0.3);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Jost', system-ui, sans-serif;
+  --slim: 'Cormorant', Georgia, serif;
+  --ease: cubic-bezier(0.22,1,0.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--cream);color:var(--text-body);overflow-x:hidden;cursor:none}
+
+/* ─── CURSOR ─────────────────────────────── */
+#cur{width:9px;height:9px;background:var(--rose);border-radius:50%;position:fixed;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,opacity .2s}
+#cur-r{width:34px;height:34px;border:1px solid rgba(200,69,95,.5);border-radius:50%;position:fixed;z-index:9998;pointer-events:none;transform:translate(-50%,-50%);transition:all .15s linear;opacity:.6}
+body.hovering #cur{width:20px;height:20px;background:var(--gold);opacity:.85}
+body.hovering #cur-r{width:52px;height:52px;border-color:rgba(201,151,58,.4)}
+
+/* ─── LOADER ─────────────────────────────── */
+#loader{position:fixed;inset:0;background:var(--black);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;transition:opacity .8s var(--ease),visibility .8s}
+#loader.out{opacity:0;visibility:hidden}
+.ld-logo{width:90px;height:90px;animation:ld-pulse 2s ease-in-out infinite}
+@keyframes ld-pulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 transparent)}50%{transform:scale(1.05);filter:drop-shadow(0 0 20px rgba(200,69,95,.5))}}
+.ld-name{font-family:var(--serif);font-size:2.6rem;letter-spacing:6px;color:var(--rose-pale);font-weight:400}
+.ld-bar{width:140px;height:1px;background:rgba(200,69,95,.2);overflow:hidden}
+.ld-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));animation:ld-w 2.4s ease forwards}
+@keyframes ld-w{from{width:0}to{width:100%}}
+
+/* ─── HEADER ─────────────────────────────── */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 64px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease)}
+header.s{background:rgba(251,248,245,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:14px 64px;border-bottom:1px solid rgba(200,69,95,.1)}
+.logo-a{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-svg{width:48px;height:48px;transition:transform .4s var(--ease)}
+.logo-a:hover .logo-svg{transform:rotate(-6deg) scale(1.05)}
+.logo-txt{display:flex;flex-direction:column}
+.logo-name{font-family:var(--serif);font-size:1.35rem;letter-spacing:4px;color:#fff;text-transform:uppercase;font-weight:500;transition:color .3s}
+.logo-sub{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:300;transition:color .3s}
+header.s .logo-name{color:var(--rose-deep)}
+header.s .logo-sub{color:var(--text-soft)}
+
+nav{display:flex;align-items:center;gap:36px}
+nav a{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;font-weight:400;transition:color .3s;cursor:none;position:relative}
+nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--rose);transition:width .3s var(--ease)}
+nav a:hover{color:#fff}
+nav a:hover::after{width:100%}
+header.s nav a{color:var(--text-mid)}
+header.s nav a:hover{color:var(--rose-deep)}
+header.s nav a::after{background:var(--rose-deep)}
+
+.nav-btn{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;padding:10px 28px;border:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;cursor:none;transition:all .35s var(--ease);font-weight:500}
+.nav-btn:hover{background:var(--rose);border-color:var(--rose)}
+header.s .nav-btn{border-color:var(--rose);color:var(--rose)}
+header.s .nav-btn:hover{background:var(--rose);color:#fff}
+
+.ham{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px}
+.ham span{display:block;width:22px;height:1.5px;background:#fff;transition:all .3s}
+header.s .ham span{background:var(--rose-deep)}
+
+/* ─── HERO ─────────────────────────────── */
+#inicio{min-height:100vh;background:var(--black);display:flex;align-items:center;position:relative;overflow:hidden}
+
+/* Real Unsplash images as backgrounds */
+.hero-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=1800&q=80') center/cover no-repeat;opacity:.35;transition:opacity 8s ease}
+.hero-bg-grad{position:absolute;inset:0;background:linear-gradient(105deg, rgba(8,4,7,.97) 0%, rgba(16,8,16,.85) 30%, rgba(26,14,24,.5) 55%, rgba(8,4,7,.7) 100%)}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.4}
+
+.hero-inner{position:relative;z-index:3;width:100%;max-width:1320px;margin:0 auto;padding:140px 64px 110px;display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:center}
+
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:30px;opacity:0;animation:fuUp .9s var(--ease) .4s forwards}
+.eyebrow-line{width:40px;height:1px;background:var(--rose)}
+.eyebrow span{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose-light);font-weight:400}
+
+.hero-h1{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.8rem);font-weight:400;color:#fff;line-height:1.06;margin-bottom:26px;opacity:0;animation:fuUp .9s var(--ease) .6s forwards}
+.hero-h1 em{font-style:italic;color:var(--rose-light);display:block}
+.hero-h1 strong{font-weight:700;color:var(--gold-light)}
+
+.hero-p{font-size:1rem;font-weight:300;color:rgba(245,216,226,.7);line-height:1.95;max-width:430px;margin-bottom:50px;opacity:0;animation:fuUp .9s var(--ease) .8s forwards}
+
+.hero-btns{display:flex;gap:18px;flex-wrap:wrap;opacity:0;animation:fuUp .9s var(--ease) 1s forwards}
+.btn-main{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;text-decoration:none;cursor:none;transition:all .4s var(--ease);border:1px solid var(--rose)}
+.btn-main:hover{background:transparent;color:var(--rose-pale);letter-spacing:3.5px}
+.btn-out{display:inline-flex;align-items:center;gap:10px;background:transparent;color:rgba(255,255,255,.55);font-size:.72rem;font-weight:400;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;border:1px solid rgba(255,255,255,.2);text-decoration:none;cursor:none;transition:all .4s var(--ease)}
+.btn-out:hover{border-color:rgba(255,255,255,.55);color:#fff}
+
+/* Hero right – mosaic of real food images */
+.hero-mosaic{position:relative;height:540px;opacity:0;animation:fuLeft .9s var(--ease) .7s forwards}
+.hm-card{position:absolute;overflow:hidden;border:2px solid transparent}
+.hm-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s}
+.hm-card:hover img{transform:scale(1.06);filter:brightness(1.1)}
+
+.hm-main{width:65%;height:72%;right:0;top:50%;transform:translateY(-50%);box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.hm-a{width:44%;height:50%;left:0;top:6%;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.hm-b{width:40%;height:34%;left:4%;bottom:3%;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+
+/* Float badges */
+.hm-tag{position:absolute;background:rgba(8,4,7,.88);border:1px solid var(--border-gold);padding:12px 18px;backdrop-filter:blur(12px);z-index:4}
+.hm-tag-t{font-size:.72rem;font-weight:500;color:var(--gold-light);letter-spacing:.5px}
+.hm-tag-s{font-size:.62rem;color:rgba(245,216,226,.45);margin-top:2px}
+.tag-tr{top:12%;right:-20px;animation:tagFloat 7s ease-in-out infinite}
+.tag-bl{bottom:14%;left:-16px;animation:tagFloat 9s ease-in-out infinite reverse}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* Stats */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:20px 64px;display:flex;gap:48px;background:rgba(8,4,7,.55);backdrop-filter:blur(10px);border-top:1px solid rgba(200,69,95,.12);opacity:0;animation:fuUp .9s var(--ease) 1.4s forwards}
+.hs{}.hs-n{font-family:var(--serif);font-size:1.9rem;font-weight:400;color:var(--rose-light);line-height:1}
+.hs-l{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px}
+
+.hero-scroll{position:absolute;bottom:36px;right:64px;display:flex;align-items:center;gap:14px;z-index:3;opacity:0;animation:fuUp .9s var(--ease) 1.8s forwards}
+.hero-scroll-line{width:44px;height:1px;background:rgba(255,255,255,.18)}
+.hero-scroll span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+/* ─── COMMON SECTION STYLES ─────────────────────────────── */
+section{padding:120px 64px}
+.container{max-width:1320px;margin:0 auto}
+.sec-badge{display:inline-flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-badge-line{width:36px;height:1px;background:var(--rose)}
+.sec-badge span{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose);font-weight:400}
+h2.stitle{font-family:var(--serif);font-size:clamp(2.2rem,3.8vw,3.6rem);font-weight:400;line-height:1.15;color:var(--text-body);margin-bottom:18px}
+h2.stitle em{font-style:italic;color:var(--rose)}
+h2.stitle strong{font-weight:700}
+.sdesc{font-size:.95rem;font-weight:300;color:var(--text-soft);line-height:1.95;max-width:500px}
+
+/* on dark sections */
+.on-dark .stitle{color:var(--rose-pale)}
+.on-dark .sdesc{color:rgba(245,216,226,.5)}
+.on-dark .sec-badge span{color:var(--gold-light)}
+.on-dark .sec-badge-line{background:var(--gold)}
+
+/* ─── NOSOTROS ─────────────────────────────── */
+#nosotros{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.about-imgs{position:relative;height:580px}
+.ab-main{position:absolute;right:0;top:0;width:74%;height:80%;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.12)}
+.ab-main img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.ab-main:hover img{transform:scale(1.04)}
+.ab-label{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;background:linear-gradient(to top, rgba(8,4,7,.85),transparent)}
+.ab-label-n{font-family:var(--serif);font-size:1.05rem;color:#fff;font-weight:400}
+.ab-label-s{font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:3px}
+
+.ab-small{position:absolute;left:0;bottom:0;width:46%;height:44%;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.15)}
+.ab-small img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.ab-small:hover img{transform:scale(1.06)}
+
+.ab-accent{position:absolute;top:38%;left:-30px;background:#fff;border:1px solid rgba(200,69,95,.15);padding:18px 22px;box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.ab-accent-n{font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--rose);line-height:1}
+.ab-accent-t{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-soft);margin-top:4px}
+
+.values{display:flex;flex-direction:column;gap:20px;margin-top:48px}
+.val{display:flex;gap:22px;align-items:flex-start;padding:24px 26px;border:1px solid rgba(200,69,95,.1);transition:all .4s var(--ease);cursor:none}
+.val:hover{border-color:var(--rose);background:rgba(200,69,95,.03);transform:translateX(6px)}
+.val-ic{width:42px;height:42px;flex-shrink:0;background:rgba(200,69,95,.08);display:flex;align-items:center;justify-content:center}
+.val-ic svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.val-n{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--text-body);margin-bottom:5px}
+.val-d{font-size:.82rem;font-weight:300;color:var(--text-soft);line-height:1.75}
+
+/* ─── EXPERIENCIAS ─────────────────────────────── */
+#experiencias{background:var(--cream2);padding-top:110px;padding-bottom:110px}
+.exp-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:56px}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.exp-card{position:relative;overflow:hidden;cursor:none;background:var(--black)}
+.exp-card.wide{grid-column:span 2}
+.ec-media{overflow:hidden}
+.ec-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .5s}
+.exp-card.wide .ec-media{height:520px}
+.ec-media{height:380px}
+.exp-card:hover .ec-media img{transform:scale(1.07);filter:brightness(.88)}
+.ec-body{position:absolute;bottom:0;left:0;right:0;padding:30px 28px;background:linear-gradient(to top, rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 65%,transparent);transition:all .4s var(--ease)}
+.ec-tag{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;font-weight:500}
+.ec-t{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:#fff;line-height:1.25}
+.exp-card.wide .ec-t{font-size:1.7rem}
+.ec-d{font-size:.8rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.75;margin-top:8px;max-height:0;overflow:hidden;transition:max-height .5s var(--ease),margin .4s}
+.exp-card:hover .ec-d{max-height:80px;margin-top:10px}
+.ec-arr{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose-light);font-weight:500;margin-top:12px;opacity:0;transform:translateY(6px);transition:all .4s var(--ease) .05s;cursor:none;text-decoration:none}
+.exp-card:hover .ec-arr{opacity:1;transform:translateY(0)}
+.ec-arr-ic{transition:transform .3s}
+.ec-arr:hover .ec-arr-ic{transform:translateX(4px)}
+
+/* ─── SERVICIOS ─────────────────────────────── */
+#servicios{background:var(--dark);position:relative;overflow:hidden}
+#servicios::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 70% at 80% 45%, rgba(200,69,95,.09) 0%,transparent 65%),radial-gradient(ellipse 45% 55% at 15% 25%, rgba(201,151,58,.06) 0%,transparent 65%)}
+.svc-header{margin-bottom:64px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,69,95,.08);position:relative;z-index:1}
+.svc{background:var(--dark);padding:44px 36px;transition:all .4s var(--ease);cursor:none;position:relative;overflow:hidden}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.svc:hover{background:rgba(200,69,95,.06)}
+.svc:hover::before{transform:scaleX(1)}
+.svc:hover .svc-icon{transform:scale(1.08) rotate(-5deg)}
+.svc-icon{width:52px;height:52px;margin-bottom:26px;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.svc-icon svg{width:100%;height:100%;stroke:var(--rose);fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.svc-n{font-family:var(--serif);font-size:1.12rem;font-weight:400;color:var(--rose-pale);margin-bottom:12px}
+.svc-d{font-size:.82rem;font-weight:300;color:rgba(245,216,226,.4);line-height:1.85}
+
+/* ─── GALERÍA ─────────────────────────────── */
+#galeria{background:var(--cream);padding-top:110px;padding-bottom:110px}
+.gal-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:250px 250px;gap:3px}
+.gi{overflow:hidden;position:relative;cursor:none}
+.gi.big{grid-column:span 2;grid-row:span 2}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s}
+.gi:hover img{transform:scale(1.07);filter:brightness(.85)}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(to top, rgba(8,4,7,.82) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:18px 16px}
+.gi:hover .gi-ov{opacity:1}
+.gi-lbl{font-family:var(--serif);font-size:.88rem;font-weight:300;color:#fff;letter-spacing:.5px}
+
+/* ─── PLAYLIST ─────────────────────────────── */
+#playlist{background:var(--black);position:relative;overflow:hidden;padding-bottom:130px}
+#playlist::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 15% 55%, rgba(200,69,95,.1) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 85% 25%, rgba(201,151,58,.07) 0%,transparent 65%)}
+.pl-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.5fr;gap:90px;align-items:start}
+.pl-intro{}
+.pl-moods{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0}
+.mood-btn{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;padding:9px 20px;border:1px solid rgba(200,69,95,.25);color:rgba(245,216,226,.5);cursor:none;transition:all .3s;background:none;font-family:var(--sans);font-weight:400}
+.mood-btn:hover,.mood-btn.on{border-color:var(--rose);color:var(--rose);background:rgba(200,69,95,.08)}
+.pl-note{font-size:.78rem;font-weight:300;color:rgba(245,216,226,.35);line-height:1.8;border-left:2px solid rgba(200,69,95,.3);padding-left:16px;margin-top:12px}
+
+/* Panel */
+.pl-panel{background:rgba(26,14,24,.85);border:1px solid rgba(200,69,95,.14);backdrop-filter:blur(16px)}
+.pl-ph{padding:22px 28px;border-bottom:1px solid rgba(200,69,95,.1);display:flex;align-items:center;justify-content:space-between}
+.pl-ph-t{font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--rose-pale)}
+.pl-ph-c{font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,216,226,.3)}
+.pl-list{max-height:360px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(200,69,95,.3) transparent}
+.pl-item{display:flex;align-items:center;gap:16px;padding:15px 28px;cursor:none;transition:background .3s;border-bottom:1px solid rgba(200,69,95,.07)}
+.pl-item:hover,.pl-item.now{background:rgba(200,69,95,.08)}
+.pl-item.now .pl-iname{color:var(--rose-light)}
+.pl-inum{font-size:.65rem;color:rgba(245,216,226,.25);width:16px;flex-shrink:0;text-align:center}
+.pl-item.now .pl-inum{display:none}
+.pl-iplay{display:none;width:16px;flex-shrink:0;align-items:center}
+.pl-item.now .pl-iplay{display:flex}
+.pl-iplay svg{width:13px;height:13px;fill:var(--rose-light)}
+.pl-idata{flex:1;min-width:0}
+.pl-iname{font-size:.84rem;font-weight:400;color:rgba(245,216,226,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s;font-family:var(--sans)}
+.pl-iart{font-size:.7rem;font-weight:300;color:rgba(245,216,226,.35);margin-top:2px}
+.pl-ibadge{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;flex-shrink:0}
+.pl-ibadge.v{background:rgba(200,69,95,.15);color:var(--rose-light)}
+.pl-ibadge.r{background:rgba(201,151,58,.15);color:var(--gold-light)}
+.pl-ibadge.f{background:rgba(120,80,200,.15);color:#c8a0f8}
+
+/* Add song footer */
+.pl-foot{padding:18px 28px;border-top:1px solid rgba(200,69,95,.1);display:flex;gap:12px}
+.pl-inp{flex:1;background:rgba(200,69,95,.06);border:1px solid rgba(200,69,95,.2);padding:10px 14px;font-family:var(--sans);font-size:.8rem;color:var(--rose-pale);outline:none;transition:border-color .3s;cursor:none}
+.pl-inp::placeholder{color:rgba(245,216,226,.25)}
+.pl-inp:focus{border-color:var(--rose)}
+.pl-add{background:var(--rose);color:#fff;border:none;padding:10px 22px;font-family:var(--sans);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;cursor:none;transition:all .3s;font-weight:600;white-space:nowrap}
+.pl-add:hover{background:var(--rose-deep);transform:translateY(-1px)}
+
+/* Now playing */
+.pl-now{margin-top:20px;padding:18px 24px;background:rgba(200,69,95,.06);border:1px solid rgba(200,69,95,.12);display:flex;align-items:center;gap:16px}
+.pl-bars{display:flex;align-items:flex-end;gap:3px;width:20px;height:18px;flex-shrink:0}
+.pl-bar{width:4px;background:var(--rose);border-radius:2px;animation:barA 1s ease-in-out infinite alternate}
+.pl-bar:nth-child(1){height:40%;animation-delay:0s}
+.pl-bar:nth-child(2){height:80%;animation-delay:.2s}
+.pl-bar:nth-child(3){height:55%;animation-delay:.4s}
+@keyframes barA{from{transform:scaleY(1)}to{transform:scaleY(.25)}}
+.pl-now-lbl{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,216,226,.3)}
+.pl-now-song{font-family:var(--serif);font-size:.92rem;color:var(--rose-pale);margin-top:2px;font-style:italic}
+.pl-now-by{font-size:.72rem;color:rgba(245,216,226,.35);margin-top:1px}
+
+/* ─── TESTIMONIOS ─────────────────────────────── */
+#testimonios{background:var(--cream);overflow:hidden}
+.testi-outer{overflow:hidden;position:relative;margin:0 -64px}
+.testi-outer::before,.testi-outer::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.testi-outer::before{left:0;background:linear-gradient(to right,var(--cream),transparent)}
+.testi-outer::after{right:0;background:linear-gradient(to left,var(--cream),transparent)}
+.testi-track{display:flex;gap:22px;animation:tSlide 45s linear infinite;width:max-content;padding:0 64px 6px}
+.testi-track:hover{animation-play-state:paused}
+@keyframes tSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tc{width:350px;flex-shrink:0;background:var(--white);border:1px solid rgba(200,69,95,.1);padding:32px;transition:all .4s var(--ease);cursor:none;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.tc:hover{border-color:var(--rose);transform:translateY(-5px);box-shadow:0 20px 50px rgba(200,69,95,.1)}
+.tc-stars{display:flex;gap:4px;margin-bottom:20px}
+.tc-stars svg{width:13px;height:13px;fill:var(--gold);stroke:none}
+.tc-q{font-family:var(--serif);font-size:.98rem;font-weight:400;font-style:italic;color:var(--text-mid);line-height:1.85;margin-bottom:22px}
+.tc-author{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(200,69,95,.1);padding-top:18px}
+.tc-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rose-deep));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.95rem;color:#fff;flex-shrink:0}
+.tc-n{font-weight:500;font-size:.85rem;color:var(--text-body)}
+.tc-ev{font-size:.7rem;font-weight:300;color:var(--text-soft);margin-top:2px}
+
+/* ─── CONTACT ─────────────────────────────── */
+#contacto{background:var(--charcoal);position:relative;overflow:hidden}
+#contacto::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=1600&q=70') center/cover no-repeat;opacity:.1}
+#contacto::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,14,24,.97) 0%,rgba(16,8,16,.85) 100%)}
+.contact-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.contact-info{padding-top:10px}
+.contact-details{margin-top:48px;display:flex;flex-direction:column;gap:24px}
+.cd{display:flex;gap:18px;align-items:flex-start}
+.cd-ic{width:40px;height:40px;flex-shrink:0;border:1px solid rgba(200,69,95,.25);display:flex;align-items:center;justify-content:center}
+.cd-ic svg{width:16px;height:16px;stroke:var(--rose-light);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cd-l{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(245,216,226,.35)}
+.cd-v{font-size:.9rem;font-weight:400;color:rgba(245,216,226,.85);margin-top:3px}
+
+.contact-form{display:flex;flex-direction:column;gap:18px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cf-field label{display:block;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(245,216,226,.4);margin-bottom:8px;font-weight:400}
+.cf-field input,.cf-field select,.cf-field textarea{width:100%;background:rgba(200,69,95,.06);border:1px solid rgba(200,69,95,.2);padding:13px 16px;font-family:var(--sans);font-size:.85rem;color:var(--rose-pale);outline:none;transition:border-color .3s;cursor:none}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(245,216,226,.25)}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--rose)}
+.cf-field select{appearance:none;cursor:none}
+.cf-field select option{background:var(--charcoal)}
+.cf-field textarea{resize:vertical;min-height:100px}
+.cf-btn{background:var(--rose);color:#fff;border:none;padding:15px 40px;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;cursor:none;transition:all .4s var(--ease);align-self:flex-start}
+.cf-btn:hover{background:transparent;border:1px solid var(--rose);color:var(--rose-pale);transform:translateY(-2px)}
+
+/* ─── FOOTER ─────────────────────────────── */
+footer{background:var(--black);border-top:1px solid rgba(200,69,95,.1);padding:60px 64px 36px}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:50px}
+.ft-brand .logo-name{color:var(--rose-pale)}
+.ft-brand .logo-sub{color:rgba(245,216,226,.3)}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(245,216,226,.35);line-height:1.85;margin-top:16px;max-width:260px}
+.ft-col-t{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(245,216,226,.35);margin-bottom:18px;font-weight:400}
+.ft-col a{display:block;font-size:.84rem;font-weight:300;color:rgba(245,216,226,.5);text-decoration:none;margin-bottom:10px;transition:color .3s;cursor:none}
+.ft-col a:hover{color:var(--rose-light)}
+.ft-social{display:flex;gap:14px;margin-top:4px}
+.ft-soc{width:36px;height:36px;border:1px solid rgba(200,69,95,.2);display:flex;align-items:center;justify-content:center;transition:all .3s;cursor:none}
+.ft-soc:hover{border-color:var(--rose);background:rgba(200,69,95,.1)}
+.ft-soc svg{width:15px;height:15px;stroke:rgba(245,216,226,.5);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.ft-soc:hover svg{stroke:var(--rose-light)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid rgba(200,69,95,.08)}
+.ft-copy{font-size:.72rem;color:rgba(245,216,226,.2);font-weight:300;letter-spacing:.5px}
+.ft-made{font-family:var(--serif);font-size:.78rem;color:rgba(245,216,226,.25);font-style:italic}
+
+/* ─── ANIMATIONS ─────────────────────────────── */
+@keyframes fuUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fuLeft{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-r.in{opacity:1;transform:translateX(0)}
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media(max-width:1024px){
+  header{padding:18px 32px}
+  header.s{padding:12px 32px}
+  nav{display:none}
+  .nav-btn{display:none}
+  .ham{display:flex}
+  section{padding:90px 32px}
+  .hero-inner{grid-template-columns:1fr;padding:130px 32px 80px;gap:50px}
+  .hero-mosaic{height:380px}
+  .about-grid,.exp-intro,.pl-grid,.contact-inner,.ft-grid{grid-template-columns:1fr;gap:50px}
+  .about-imgs{height:400px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi.big{grid-column:span 2}
+  .exp-grid{grid-template-columns:1fr}
+  .exp-card.wide{grid-column:span 1}
+  .hero-stats{gap:24px;padding:16px 32px;flex-wrap:wrap}
+  .hero-scroll{right:32px}
+}
+@media(max-width:640px){
+  .hero-mosaic{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .cf-row{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi.big{grid-column:span 1;grid-row:span 1}
+  .hero-stats{display:none}
+}
+
+/* Mobile nav */
+.mob-nav{display:none;position:fixed;inset:0;background:var(--black);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--rose-pale);text-decoration:none;letter-spacing:2px;transition:color .3s}
+.mob-nav a:hover{color:var(--rose-light)}
+.mob-close{position:absolute;top:22px;right:32px;background:none;border:none;font-size:1.4rem;color:rgba(245,216,226,.5);cursor:pointer;transition:transform .3s}
+.mob-close:hover{transform:rotate(90deg);color:var(--rose-light)}
+
+/* Scroll to top */
+.stt{position:fixed;bottom:32px;right:32px;z-index:900;width:44px;height:44px;background:var(--rose);display:flex;align-items:center;justify-content:center;cursor:none;transition:all .4s var(--ease);opacity:0;transform:translateY(10px)}
+.stt.show{opacity:1;transform:translateY(0)}
+.stt:hover{background:var(--rose-deep);transform:translateY(-3px)}
+.stt svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <!-- SVG Logo inline (minimal rose-toned Z icon) -->
+  <svg class="ld-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="48" stroke="#C8455F" stroke-width="1.5" opacity=".4"/>
+    <circle cx="50" cy="50" r="38" fill="#1a0e18"/>
+    <!-- Stylized Z + dessert swirl -->
+    <path d="M32 34 L68 34 L32 66 L68 66" stroke="#C8455F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M55 28 Q62 24 65 30 Q68 36 60 38" stroke="#C9973A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <circle cx="65" cy="30" r="2.5" fill="#C9973A"/>
+  </svg>
+  <div class="ld-name">Zyummy</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <a href="#inicio" class="logo-a">
+    <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" stroke="#C8455F" stroke-width="1.5" opacity=".4"/>
+      <circle cx="50" cy="50" r="38" fill="#1a0e18"/>
+      <path d="M32 34 L68 34 L32 66 L68 66" stroke="#C8455F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M55 28 Q62 24 65 30 Q68 36 60 38" stroke="#C9973A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <circle cx="65" cy="30" r="2.5" fill="#C9973A"/>
+    </svg>
+    <div class="logo-txt">
+      <span class="logo-name">Zyummy</span>
+      <span class="logo-sub">Postres &amp; Bebidas</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#playlist">Playlist</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a href="#contacto" class="nav-btn">Reservar</a>
+  <button class="ham" id="ham-btn" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mob-nav">
+  <button class="mob-close" id="mob-close">✕</button>
+  <a href="#nosotros" class="mob-link">Nosotros</a>
+  <a href="#experiencias" class="mob-link">Experiencias</a>
+  <a href="#servicios" class="mob-link">Servicios</a>
+  <a href="#galeria" class="mob-link">Galería</a>
+  <a href="#playlist" class="mob-link">Playlist</a>
+  <a href="#contacto" class="mob-link">Contacto</a>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="inicio">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg-grad"></div>
+  <div class="hero-noise"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span>Medellín · Experiencias Premium</span>
+      </div>
+      <h1 class="hero-h1">
+        Sabores que<br>
+        <em>transforman</em>
+        <strong>momentos</strong>
+      </h1>
+      <p class="hero-p">Postres artesanales de autor, bebidas exóticas personalizadas y experiencias visuales que convierten cada celebración en un recuerdo irrepetible.</p>
+      <div class="hero-btns">
+        <a href="#experiencias" class="btn-main">Descubrir ↓</a>
+        <a href="#contacto" class="btn-out">Cotizar Evento</a>
+      </div>
+    </div>
+
+    <div class="hero-mosaic">
+      <!-- Main cake image -->
+      <div class="hm-card hm-main">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=85" alt="Torta de diseño Zyummy" loading="eager">
+      </div>
+      <!-- Top-left juice image -->
+      <div class="hm-card hm-a">
+        <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&q=85" alt="Bebidas exóticas Zyummy" loading="eager">
+      </div>
+      <!-- Bottom-left dessert -->
+      <div class="hm-card hm-b">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=85" alt="Macarons artesanales Zyummy" loading="eager">
+      </div>
+      <!-- Float badges -->
+      <div class="hm-tag tag-tr">
+        <div class="hm-tag-t">100% Artesanal</div>
+        <div class="hm-tag-s">Ingredientes premium</div>
+      </div>
+      <div class="hm-tag tag-bl">
+        <div class="hm-tag-t">+300 Eventos</div>
+        <div class="hm-tag-s">En toda la ciudad</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-n">300+</div><div class="hs-l">Eventos Realizados</div></div>
+    <div class="hs"><div class="hs-n">40+</div><div class="hs-l">Sabores Únicos</div></div>
+    <div class="hs"><div class="hs-n">5★</div><div class="hs-l">Calificación Promedio</div></div>
+    <div class="hs"><div class="hs-n">48h</div><div class="hs-l">Personalización</div></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════ NOSOTROS ═══════════ -->
+<section id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs reveal-l">
+        <div class="ab-main">
+          <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=85" alt="Postres artesanales Zyummy">
+          <div class="ab-label">
+            <div class="ab-label-n">Repostería de Autor</div>
+            <div class="ab-label-s">Diseño · Sabor · Textura</div>
+          </div>
+        </div>
+        <div class="ab-small">
+          <img src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=600&q=85" alt="Bebidas tropicales Zyummy">
+        </div>
+        <div class="ab-accent">
+          <div class="ab-accent-n">2020</div>
+          <div class="ab-accent-t">Fundada en Medellín</div>
+        </div>
+      </div>
+
+      <div class="about-right reveal-r">
+        <div class="sec-badge"><div class="sec-badge-line"></div><span>Nuestra Historia</span></div>
+        <h2 class="stitle">Nació de una <em>pasión</em> por el sabor auténtico</h2>
+        <p class="sdesc">Somos una marca medellínense que crea experiencias dulces únicas. Cada postre es una obra de arte comestible; cada bebida, un viaje sensorial. Trabajamos con ingredientes de primera y una obsesión total por los detalles.</p>
+
+        <div class="values">
+          <div class="val">
+            <div class="val-ic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div><div class="val-n">Elaborado con Amor</div><div class="val-d">Cada pieza sale de nuestras manos con dedicación y un estándar de calidad que nunca negociamos.</div></div>
+          </div>
+          <div class="val">
+            <div class="val-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><div class="val-n">Ingredientes Premium</div><div class="val-d">Chocolate belga, frutas exóticas de temporada y bases sin conservantes artificiales.</div></div>
+          </div>
+          <div class="val">
+            <div class="val-ic"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div><div class="val-n">Personalización Total</div><div class="val-d">Tu visión, nuestras manos. Diseñamos cada detalle según tu historia, paleta de colores y gustos.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCIAS ═══════════ -->
+<section id="experiencias">
+  <div class="container">
+    <div class="exp-intro">
+      <div class="reveal">
+        <div class="sec-badge"><div class="sec-badge-line"></div><span>Lo que Hacemos</span></div>
+        <h2 class="stitle">Nuestras <em>experiencias</em> premium</h2>
+      </div>
+      <div class="reveal"><p class="sdesc">Desde tortas personalizadas hasta candy bars temáticos y jugos de autor. Cada experiencia está diseñada para impresionar todos los sentidos.</p></div>
+    </div>
+
+    <div class="exp-grid reveal">
+      <!-- Wide card -->
+      <div class="exp-card wide">
+        <div class="ec-media">
+          <img src="https://i.pinimg.com/736x/5d/02/c1/5d02c15f0a9a30fe1f928bee96229082.jpg" alt="Tortas de diseño personalizadas">
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Postre Principal</div>
+          <div class="ec-t">Tortas de Diseño Personalizadas</div>
+          <div class="ec-d">Estructuras de varios pisos con técnicas de pintura en fondant, flores de azúcar y rellenos de autor. Cada torta es irrepetible.</div>
+          <a href="#contacto" class="ec-arr">Pedir la mía <span class="ec-arr-ic">→</span></a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="exp-card">
+        <div class="ec-media">
+          <img src="https://i.pinimg.com/1200x/90/18/23/901823a5a66954b61984bdff86566a42.jpg" alt="Jugos exóticos tropicales">
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Bebidas</div>
+          <div class="ec-t">Jugos Exóticos de Autor</div>
+          <div class="ec-d">Combinaciones únicas: maracuyá con jengibre, lulo con menta, guanábana con coco. Frescos, sin conservantes, servidos en copas de cristal.</div>
+          <a href="#contacto" class="ec-arr">Ver carta <span class="ec-arr-ic">→</span></a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="exp-card">
+        <div class="ec-media">
+          <img src="https://i.pinimg.com/736x/82/aa/6e/82aa6e80b0620792163a79c65990e64e.jpg" alt="Candy Bar temático">
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Eventos</div>
+          <div class="ec-t">Candy Bar Temático</div>
+          <div class="ec-d">Montamos un mundo dulce con colores, texturas y alturas. Macarons, cupcakes, trufas y más en una presentación visualmente espectacular.</div>
+          <a href="#contacto" class="ec-arr">Cotizar <span class="ec-arr-ic">→</span></a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="exp-card">
+        <div class="ec-media">
+          <img src="https://i.pinimg.com/736x/8d/d9/3f/8dd93f94e54ae8e7ebf84c05d6e223c6.jpg" alt="Macarons y petit fours">
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Repostería Fina</div>
+          <div class="ec-t">Macarons & Petit Fours</div>
+          <div class="ec-d">Bocados de elegancia francesa con un toque tropical colombiano. Perfectos para bodas, baby showers y eventos corporativos.</div>
+          <a href="#contacto" class="ec-arr">Ordenar <span class="ec-arr-ic">→</span></a>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="exp-card">
+        <div class="ec-media">
+          <img src="https://i.pinimg.com/736x/6a/34/3b/6a343be7bb83aa692082f1cac8fe904b.jpg" alt="Spot instagrameable">
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Experiencia Visual</div>
+          <div class="ec-t">Spot Instagrameable</div>
+          <div class="ec-d">Ambientamos un rincón de ensueño con flores, luces, nuestros productos y detalles personalizados para las fotos más memorables de tu evento.</div>
+          <a href="#contacto" class="ec-arr">Diseñar mi spot <span class="ec-arr-ic">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICIOS ═══════════ -->
+<section id="servicios">
+  <div class="container">
+    <div class="svc-header on-dark reveal">
+      <div class="sec-badge"><div class="sec-badge-line"></div><span>Servicios</span></div>
+      <h2 class="stitle" style="color:var(--rose-pale)">Todo lo que <em style="color:var(--rose-light)">necesitas</em><br>para tu evento</h2>
+      <p class="sdesc" style="color:rgba(245,216,226,.5);margin-top:18px">Desde el diseño inicial hasta la entrega final. Nos encargamos de cada detalle para que tú solo disfrutes.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><path d="M28 8 L28 48 M8 28 L48 28"/><circle cx="28" cy="28" r="18"/><path d="M20 20 Q28 14 36 20 Q42 28 36 36 Q28 42 20 36 Q14 28 20 20Z"/></svg></div>
+        <div class="svc-n">Diseño Personalizado</div>
+        <div class="svc-d">Creamos el concepto visual de tu evento desde cero. Paleta de colores, referencias y bocetos antes de empezar.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><path d="M10 40 L28 10 L46 40 Z"/><path d="M20 28 L36 28"/><path d="M28 10 L28 40"/></svg></div>
+        <div class="svc-n">Repostería Artesanal</div>
+        <div class="svc-d">Tortas, cupcakes, macarons, brownies y más. Todo elaborado a mano con ingredientes premium seleccionados.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><path d="M20 14 L20 42 Q20 46 28 46 Q36 46 36 42 L36 14"/><ellipse cx="28" cy="14" rx="8" ry="4"/><path d="M20 26 L36 26"/><path d="M30 8 Q34 6 36 10"/></svg></div>
+        <div class="svc-n">Bebidas Exóticas</div>
+        <div class="svc-d">Jugos de frutas tropicales, cocteles sin alcohol, smoothies y bebidas calientes artesanales para toda ocasión.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><rect x="10" y="20" width="36" height="26" rx="2"/><path d="M10 26 L46 26"/><path d="M20 20 L20 14 Q20 10 28 10 Q36 10 36 14 L36 20"/><circle cx="28" cy="36" r="4"/></svg></div>
+        <div class="svc-n">Candy Bar Completo</div>
+        <div class="svc-d">Montamos y desmontamos todo. Incluye mobiliario decorativo, etiquetas personalizadas y la totalidad de los productos.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="18"/><path d="M28 10 L28 46 M10 28 L46 28"/><path d="M18 16 Q28 22 38 16"/><path d="M16 38 Q28 32 40 38"/></svg></div>
+        <div class="svc-n">Spot Fotográfico</div>
+        <div class="svc-d">Diseñamos e instalamos un rincón instagrameable temático con iluminación, flores y nuestros productos como protagonistas.</div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 56 56"><path d="M14 28 Q28 14 42 28 Q28 42 14 28Z"/><circle cx="28" cy="28" r="6"/><path d="M28 8 L28 16 M28 40 L28 48 M8 28 L16 28 M40 28 L48 28"/></svg></div>
+        <div class="svc-n">Delivery Premium</div>
+        <div class="svc-d">Entrega cuidadosa con empaques de lujo, temperatura controlada y presentación impecable en la puerta de tu evento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GALERÍA ═══════════ -->
+<section id="galeria">
+  <div class="container">
+    <div class="gal-hdr reveal">
+      <div>
+        <div class="sec-badge"><div class="sec-badge-line"></div><span>Galería</span></div>
+        <h2 class="stitle">Momentos <em>dulces</em><br>que hemos creado</h2>
+      </div>
+      <a href="#contacto" class="btn-main" style="align-self:flex-end">Ver más trabajos →</a>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gi big">
+        <img src="https://i.pinimg.com/736x/5d/02/c1/5d02c15f0a9a30fe1f928bee96229082.jpg" alt="Torta de diseño luxury">
+        <div class="gi-ov"><div class="gi-lbl">Torta Luxury Rose</div></div>
+      </div>
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=85" alt="Bebida tropical exótica">
+        <div class="gi-ov"><div class="gi-lbl">Tropical Sour</div></div>
+      </div>
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=85" alt="Cupcakes artesanales">
+        <div class="gi-ov"><div class="gi-lbl">Cupcakes Edición Especial</div></div>
+      </div>
+      <div class="gi">
+        <img src="https://i.pinimg.com/1200x/2a/37/13/2a3713c0785b9f6601f052534bb0a9b5.jpg" width="200">
+        <div class="gi-ov"><div class="gi-lbl">Macarons Pastel</div></div>
+      </div>
+      <div class="gi">
+        <img src="https://i.pinimg.com/736x/2d/00/53/2d00532bbf7c84656c5305021d2032be.jpg" alt="Candy bar temático">
+        <div class="gi-ov"><div class="gi-lbl">Candy Bar Romántico</div></div>
+      </div>
+      <div class="gi">
+        <img src="https://i.pinimg.com/1200x/99/54/bd/9954bdf5a64c88b271b134dbb1bc60e0.jpg" alt="Latte art café premium">
+        <div class="gi-ov"><div class="gi-lbl">Coffee Premium</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PLAYLIST ═══════════ -->
+<section id="playlist">
+  <div class="container">
+    <div class="pl-grid">
+      <div class="pl-intro on-dark reveal-l">
+        <div class="sec-badge"><div class="sec-badge-line"></div><span>Tu Ambiente</span></div>
+        <h2 class="stitle" style="color:var(--rose-pale)">Crea tu <em style="color:var(--rose-light)">playlist</em><br>para el evento</h2>
+        <p class="sdesc" style="color:rgba(245,216,226,.5);margin-top:14px">La música perfecta hace que los sabores sepan mejor. Cuéntanos el vibe de tu evento y armamos la playlist ideal, o agrega tus canciones favoritas.</p>
+
+        <div class="pl-moods">
+          <button class="mood-btn on" data-mood="romántico">Romántico</button>
+          <button class="mood-btn" data-mood="fiesta">Fiesta</button>
+          <button class="mood-btn" data-mood="chill">Chill Lounge</button>
+          <button class="mood-btn" data-mood="infantil">Infantil</button>
+          <button class="mood-btn" data-mood="corporativo">Corporativo</button>
+        </div>
+        <p class="pl-note">Compartimos la playlist final por WhatsApp antes de tu evento. También puedes agregarnos canciones en tiempo real.</p>
+      </div>
+
+      <div class="reveal-r">
+        <div class="pl-panel">
+          <div class="pl-ph">
+            <div class="pl-ph-t" id="pl-title">Playlist · Romántico</div>
+            <div class="pl-ph-c" id="pl-count">6 canciones</div>
+          </div>
+          <div class="pl-list" id="pl-list"></div>
+          <div class="pl-foot">
+            <input class="pl-inp" id="pl-inp" type="text" placeholder="Agregar canción (artista – título)…">
+            <button class="pl-add" id="pl-add-btn">Agregar</button>
+          </div>
+        </div>
+
+        <div class="pl-now" id="pl-now">
+          <div class="pl-bars">
+            <div class="pl-bar"></div><div class="pl-bar"></div><div class="pl-bar"></div>
+          </div>
+          <div>
+            <div class="pl-now-lbl">Sonando ahora</div>
+            <div class="pl-now-song" id="pl-now-song">Perfect – Ed Sheeran</div>
+            <div class="pl-now-by" id="pl-now-by">Playlist Romántico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIOS ═══════════ -->
+<section id="testimonios" style="padding-bottom:0">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:52px">
+      <div class="sec-badge" style="justify-content:center"><div class="sec-badge-line"></div><span>Testimonios</span><div class="sec-badge-line"></div></div>
+      <h2 class="stitle" style="text-align:center">Lo que dicen nuestros<br><em>clientes felices</em></h2>
+    </div>
+  </div>
+  <div class="testi-outer">
+    <div class="testi-track" id="testi-track"></div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACTO ═══════════ -->
+<section id="contacto" style="padding-top:130px;padding-bottom:130px">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info on-dark reveal-l">
+        <div class="sec-badge"><div class="sec-badge-line"></div><span>Contacto</span></div>
+        <h2 class="stitle" style="color:var(--rose-pale)">Hagamos realidad<br>tu <em style="color:var(--rose-light)">sueño dulce</em></h2>
+        <p class="sdesc" style="color:rgba(245,216,226,.5);margin-top:16px">Cuéntanos sobre tu evento y en menos de 24 horas te enviamos una propuesta personalizada. Sin compromisos, con todo el amor del mundo.</p>
+
+        <div class="contact-details">
+          <div class="cd">
+            <div class="cd-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div class="cd-l">WhatsApp</div><div class="cd-v">+57 300 000 0000</div></div>
+          </div>
+          <div class="cd">
+            <div class="cd-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="cd-l">Email</div><div class="cd-v">hola@zyummy.co</div></div>
+          </div>
+          <div class="cd">
+            <div class="cd-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="cd-l">Ubicación</div><div class="cd-v">Medellín, Antioquia</div></div>
+          </div>
+          <div class="cd">
+            <div class="cd-ic"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div><div class="cd-l">Instagram</div><div class="cd-v">@zyummy.co</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-r">
+        <div class="contact-form">
+          <div class="cf-row">
+            <div class="cf-field"><label>Nombre</label><input type="text" placeholder="Tu nombre completo"></div>
+            <div class="cf-field"><label>WhatsApp</label><input type="tel" placeholder="+57 300 000 0000"></div>
+          </div>
+          <div class="cf-field">
+            <label>Tipo de Evento</label>
+            <select>
+              <option value="" disabled selected>Selecciona el tipo de evento</option>
+              <option>Boda</option>
+              <option>Baby Shower</option>
+              <option>Cumpleaños Adulto</option>
+              <option>Cumpleaños Infantil</option>
+              <option>Corporativo</option>
+              <option>Quinceañera</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field"><label>Fecha del Evento</label><input type="date"></div>
+            <div class="cf-field"><label>N° de Personas</label><input type="number" placeholder="Ej: 50"></div>
+          </div>
+          <div class="cf-field"><label>Cuéntanos tu visión</label><textarea placeholder="Colores, temática, productos que te gustan, referencias de inspiración…"></textarea></div>
+          <button class="cf-btn">Enviar Solicitud →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <a href="#inicio" class="logo-a" style="text-decoration:none">
+        <svg class="logo-svg" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="48" stroke="#C8455F" stroke-width="1.5" opacity=".4"/>
+          <circle cx="50" cy="50" r="38" fill="#1a0e18"/>
+          <path d="M32 34 L68 34 L32 66 L68 66" stroke="#C8455F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M55 28 Q62 24 65 30 Q68 36 60 38" stroke="#C9973A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="65" cy="30" r="2.5" fill="#C9973A"/>
+        </svg>
+        <div class="logo-txt">
+          <span class="logo-name">Zyummy</span>
+          <span class="logo-sub">Postres &amp; Bebidas</span>
+        </div>
+      </a>
+      <p class="ft-desc">Creamos experiencias dulces irrepetibles para los momentos más especiales de tu vida. Con amor, desde Medellín.</p>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-t">Navegación</div>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#playlist">Playlist</a>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-t">Servicios</div>
+      <a href="#contacto">Tortas Personalizadas</a>
+      <a href="#contacto">Candy Bar</a>
+      <a href="#contacto">Bebidas Exóticas</a>
+      <a href="#contacto">Spot Fotográfico</a>
+      <a href="#contacto">Delivery Premium</a>
+    </div>
+    <div class="ft-col">
+      <div class="ft-col-t">Síguenos</div>
+      <div class="ft-social">
+        <a href="#" class="ft-soc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="ft-soc" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="#" class="ft-soc" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.5a8.18 8.18 0 0 0 4.78 1.52V6.58a4.83 4.83 0 0 1-1.01.11z"/></svg>
+        </a>
+      </div>
+      <a href="#contacto" style="display:block;margin-top:22px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose-light);text-decoration:none;font-weight:500;transition:color .3s">Cotizar Evento →</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 Zyummy · Todos los derechos reservados · Medellín, Colombia</div>
+    <div class="ft-made">Sabor con propósito</div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="stt" id="stt" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+// ─── CURSOR ───────────────────────────────────────────────
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animR(){requestAnimationFrame(animR);rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px'})();
+document.querySelectorAll('a,button,[class*="card"],[class*="val"],[class*="gi"],[class*="pl-item"],[class*="tc"]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+});
+
+// ─── LOADER ───────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('out'), 2400);
+});
+
+// ─── HEADER SCROLL ────────────────────────────────────────
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('s', window.scrollY > 60);
+  document.getElementById('stt').classList.toggle('show', window.scrollY > 400);
+});
+
+// ─── MOBILE NAV ───────────────────────────────────────────
+document.getElementById('ham-btn').addEventListener('click', () => document.getElementById('mob-nav').classList.add('open'));
+document.getElementById('mob-close').addEventListener('click', () => document.getElementById('mob-nav').classList.remove('open'));
+document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => document.getElementById('mob-nav').classList.remove('open')));
+
+// ─── SCROLL TO TOP ────────────────────────────────────────
+document.getElementById('stt').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+// ─── SCROLL REVEAL ────────────────────────────────────────
+const revEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, {threshold:.12});
+revEls.forEach(el => obs.observe(el));
+
+// ─── PLAYLIST ─────────────────────────────────────────────
+const playlists = {
+  romántico: [
+    {n:'Perfect',a:'Ed Sheeran',b:'r'},{n:'Un Año',a:'Bad Bunny ft. JHAY',b:'r'},
+    {n:'Lover',a:'Taylor Swift',b:'r'},{n:'All of Me',a:'John Legend',b:'r'},
+    {n:'Hawái',a:'Maluma',b:'r'},{n:'Thinking Out Loud',a:'Ed Sheeran',b:'r'}
+  ],
+  fiesta: [
+    {n:'Tití Me Preguntó',a:'Bad Bunny',b:'f'},{n:'Shakira: Bzrp #53',a:'Bizarrap',b:'f'},
+    {n:'Provenza',a:'Karol G',b:'f'},{n:'Tusa',a:'Karol G & Nicki Minaj',b:'f'},
+    {n:'La Bachata',a:'Manuel Turizo',b:'f'},{n:'Yonaguni',a:'Bad Bunny',b:'f'}
+  ],
+  chill: [
+    {n:'Summertime Sadness',a:'Lana Del Rey',b:'v'},{n:'Blinding Lights',a:'The Weeknd',b:'v'},
+    {n:'Cigarettes After Sex',a:'Cigarettes After Sex',b:'v'},{n:'Skinny Love',a:'Bon Iver',b:'v'},
+    {n:'Motion Picture Soundtrack',a:'Radiohead',b:'v'},{n:'Bloom',a:'The Paper Kites',b:'v'}
+  ],
+  infantil: [
+    {n:'Happy',a:'Pharrell Williams',b:'f'},{n:'Can\'t Stop the Feeling',a:'Justin Timberlake',b:'f'},
+    {n:'Dancing Queen',a:'ABBA',b:'f'},{n:'Uptown Funk',a:'Bruno Mars',b:'f'},
+    {n:'Good Day Sunshine',a:'The Beatles',b:'f'},{n:'Here Comes the Sun',a:'The Beatles',b:'f'}
+  ],
+  corporativo: [
+    {n:'Smooth Operator',a:'Sade',b:'v'},{n:'Fly Me to the Moon',a:'Frank Sinatra',b:'v'},
+    {n:'L\'Via L\'Viaquez',a:'The Mars Volta',b:'v'},{n:'Shape of You',a:'Ed Sheeran',b:'v'},
+    {n:'Come Away With Me',a:'Norah Jones',b:'v'},{n:'Feelin\' Good',a:'Nina Simone',b:'v'}
+  ]
+};
+const badgeLabels = {r:'Romántico',f:'Fiesta',v:'Vibes'};
+let currentMood = 'romántico';
+let nowIdx = 0;
+
+function renderPlaylist(mood){
+  const list = document.getElementById('pl-list');
+  const titleEl = document.getElementById('pl-title');
+  const countEl = document.getElementById('pl-count');
+  const tracks = playlists[mood] || [];
+  titleEl.textContent = 'Playlist · ' + mood.charAt(0).toUpperCase()+mood.slice(1);
+  countEl.textContent = tracks.length + ' canciones';
+  list.innerHTML = '';
+  tracks.forEach((t,i)=>{
+    const div = document.createElement('div');
+    div.className = 'pl-item'+(i===nowIdx&&mood===currentMood?' now':'');
+    div.innerHTML = `
+      <span class="pl-inum">${i+1}</span>
+      <span class="pl-iplay"><svg viewBox="0 0 24 24" fill="#E8789A"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+      <div class="pl-idata"><div class="pl-iname">${t.n}</div><div class="pl-iart">${t.a}</div></div>
+      <span class="pl-ibadge ${t.b}">${badgeLabels[t.b]||''}</span>`;
+    div.addEventListener('click',()=>{
+      document.querySelectorAll('.pl-item').forEach(x=>x.classList.remove('now'));
+      div.classList.add('now');
+      nowIdx=i; currentMood=mood;
+      document.getElementById('pl-now-song').textContent=t.n+' – '+t.a;
+      document.getElementById('pl-now-by').textContent='Playlist '+mood.charAt(0).toUpperCase()+mood.slice(1);
+    });
+    list.appendChild(div);
+  });
+}
+renderPlaylist(currentMood);
+
+document.querySelectorAll('.mood-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    currentMood=btn.dataset.mood;
+    nowIdx=0;
+    renderPlaylist(currentMood);
+    const tr=playlists[currentMood];
+    if(tr&&tr.length){
+      document.getElementById('pl-now-song').textContent=tr[0].n+' – '+tr[0].a;
+      document.getElementById('pl-now-by').textContent='Playlist '+currentMood.charAt(0).toUpperCase()+currentMood.slice(1);
+    }
+  });
+});
+
+// Add song
+document.getElementById('pl-add-btn').addEventListener('click',()=>{
+  const val = document.getElementById('pl-inp').value.trim();
+  if(!val) return;
+  const parts = val.split('–').map(s=>s.trim());
+  const song = {n:parts[0]||val, a:parts[1]||'Tu solicitud', b:'v'};
+  playlists[currentMood].push(song);
+  renderPlaylist(currentMood);
+  document.getElementById('pl-inp').value='';
+  // Scroll to bottom
+  const lst = document.getElementById('pl-list');
+  lst.scrollTop = lst.scrollHeight;
+});
+document.getElementById('pl-inp').addEventListener('keydown',e=>{if(e.key==='Enter') document.getElementById('pl-add-btn').click();});
+
+// ─── TESTIMONIOS ──────────────────────────────────────────
+const testimonios = [
+  {q:'La torta de mi boda fue simplemente perfecta. Cada detalle coincidía con nuestra visión. Los invitados no paraban de preguntarme quién la había hecho.',n:'Valentina R.',e:'Boda · 120 personas',i:'V'},
+  {q:'Para el baby shower de mi hija montaron un candy bar espectacular. Las bebidas de maracuyá fueron el hit de la tarde. Totalmente recomendados.',n:'Camila M.',e:'Baby Shower',i:'C'},
+  {q:'Los macarons son de otro nivel. Los pedí para un evento corporativo y todos quedaron impresionados. Calidad francesa con sabores colombianos.',n:'Andrés P.',e:'Evento Corporativo',i:'A'},
+  {q:'El spot fotográfico que armaron fue increíble. Todas mis fotos quedaron como sacadas de una revista. El servicio fue impecable de principio a fin.',n:'Sara L.',e:'Quinceañera',i:'S'},
+  {q:'Llevamos tres años pidiendo las tortas de cumpleaños con Zyummy y cada año superan las expectativas. No cambiaríamos por nada.',n:'Familia García',e:'Cliente fiel · 3 años',i:'F'},
+  {q:'Los jugos exóticos fueron una revelación. Combinaciones que nunca hubiera imaginado pero que funcionan perfectamente. Arte líquido.',n:'Diego F.',e:'Evento de empresa',i:'D'},
+  {q:'La atención personalizada es lo que más valoro. Desde el primer mensaje respondieron con rapidez y con ideas brillantes para mi temática.',n:'Mariana T.',e:'Cumpleaños 30',i:'M'},
+  {q:'Zyummy convirtió la mesa de postres de mi boda en una obra de arte. La presentación fue tan bella que costaba comerlos. El sabor, increíble.',n:'Juliana & Nicolás',e:'Boda civil',i:'J'},
+];
+
+const track = document.getElementById('testi-track');
+const doubled = [...testimonios,...testimonios];
+doubled.forEach(t=>{
+  const div = document.createElement('div');
+  div.className='tc';
+  div.innerHTML=`
+    <div class="tc-stars">${'<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'.repeat(5)}</div>
+    <div class="tc-q">"${t.q}"</div>
+    <div class="tc-author">
+      <div class="tc-av">${t.i}</div>
+      <div><div class="tc-n">${t.n}</div><div class="tc-ev">${t.e}</div></div>
+    </div>`;
+  track.appendChild(div);
+});
+
+// ─── HERO BG SLIDESHOW ────────────────────────────────────
+const heroBgs = [
+  'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=1800&q=80',
+  'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1800&q=80',
+  'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=1800&q=80',
+];
+let bgIdx=0;
+setInterval(()=>{
+  bgIdx=(bgIdx+1)%heroBgs.length;
+  document.querySelector('.hero-bg-img').style.backgroundImage=`url('${heroBgs[bgIdx]}')`;
+},6000);
+
+// ─── COUNTER ANIMATION ─────────────────────────────────────
+function animateCount(el, target, suffix){
+  let start=0;
+  const step = () => {
+    start = Math.min(start+(target/60|0||1), target);
+    el.textContent = start + suffix;
+    if(start < target) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const statsObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.hs-n').forEach((el,i)=>{
+        const vals=[300,40,5,48];const suf=['+','+','★','h'];
+        animateCount(el,vals[i],suf[i]);
+      });
+      statsObs.disconnect();
+    }
+  });
+},{threshold:.5});
+const statsEl = document.querySelector('.hero-stats');
+if(statsEl) statsObs.observe(statsEl);
+</script>
+</body>
+</html>
